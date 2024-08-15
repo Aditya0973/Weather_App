@@ -63,43 +63,62 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blueAccent.shade100,
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            _buildBackground(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GlassmorphicContainer(
-                  width: 300,
-                  height: 400,
-                  borderRadius: 20,
-                  blur: 15,
-                  alignment: Alignment.center,
-                  border: 2,
-                  linearGradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.2),
-                      Colors.white.withOpacity(0.05),
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
+      body: Column(
+        children: [
+          Expanded(
+            child: Center(
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  _buildBackground(),
+                  SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GlassmorphicContainer(
+                          width: 300,
+                          height: 400,
+                          borderRadius: 20,
+                          blur: 15,
+                          alignment: Alignment.center,
+                          border: 2,
+                          linearGradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(0.2),
+                              Colors.white.withOpacity(0.05),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderGradient: LinearGradient(
+                            colors: [
+                              Colors.white.withOpacity(0.6),
+                              Colors.white.withOpacity(0.1),
+                            ],
+                          ),
+                          child: _buildWeatherContent(),
+                        ),
+                        const SizedBox(height: 20),
+                        _buildForecast(),
+                      ],
+                    ),
                   ),
-                  borderGradient: LinearGradient(
-                    colors: [
-                      Colors.white.withOpacity(0.6),
-                      Colors.white.withOpacity(0.1),
-                    ],
-                  ),
-                  child: _buildWeatherContent(),
-                ),
-                const SizedBox(height: 20),
-                _buildForecast(),
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              "Created by Aditya Kumar",
+              style: GoogleFonts.roboto(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ],
       ),
     );
   }
